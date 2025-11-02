@@ -1,0 +1,263 @@
+.virtual-scroll-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+.virtual-scroll-container h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-label {
+  font-size: 0.85em;
+  color: #999;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-value.loading {
+  color: #FF9800;
+}
+
+.stat-value.active {
+  color: #4CAF50;
+}
+
+.stat-value.complete {
+  color: #2196F3;
+}
+
+.btn-reset {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-reset:hover {
+  background-color: #1976D2;
+}
+
+.list-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.user-row:hover {
+  background-color: #f9f9f9;
+}
+
+.loading-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #fff3e0;
+  border-top: 2px solid #FF9800;
+}
+
+.loading-more p {
+  margin: 0;
+  color: #E65100;
+  font-weight: 600;
+}
+
+.user-row.loading {
+  justify-content: center;
+  background-color: #fff3e0;
+  gap: 10px;
+}
+
+.loading-spinner {
+  font-size: 1.5em;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.user-email {
+  margin: 3px 0;
+  color: #2196F3;
+  font-size: 0.9em;
+}
+
+.user-details {
+  margin: 3px 0;
+  color: #666;
+  font-size: 0.85em;
+}
+
+.user-meta {
+  margin: 5px 0 0 0;
+  color: #999;
+  font-size: 0.8em;
+}
+
+.user-id {
+  font-weight: bold;
+  color: #9C27B0;
+  font-size: 1.2em;
+  padding: 10px 15px;
+  background: #f3e5f5;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.end-message {
+  text-align: center;
+  padding: 20px;
+  background: #e8f5e9;
+  border-radius: 8px;
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  border: 2px solid #4CAF50;
+}
+
+.info-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #1976D2;
+}
+
+.info-section h4:not(:first-child) {
+  margin-top: 25px;
+}
+
+.info-section ul {
+  margin: 10px 0;
+  padding-left: 25px;
+}
+
+.info-section li {
+  margin-bottom: 10px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.info-section code {
+  background: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #d63384;
+  font-family: 'Courier New', monospace;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .virtual-scroll-container {
+    padding: 20px;
+  }
+
+  .stats-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .user-id {
+    align-self: flex-end;
+  }
+
+  .list-container {
+    height: 500px;
+  }
+}

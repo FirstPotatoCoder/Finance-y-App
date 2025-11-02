@@ -1,0 +1,113 @@
+.home-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+.home-container h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  border-color: #4CAF50;
+}
+
+.card-icon {
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  color: #333;
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.card p {
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card li {
+  padding: 8px 0;
+  color: #555;
+  position: relative;
+  padding-left: 25px;
+}
+
+.card li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.info-box {
+  background: #fff3cd;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+  text-align: center;
+}
+
+.info-box h3 {
+  margin-top: 0;
+  color: #856404;
+}
+
+.info-box p {
+  color: #856404;
+  margin: 10px 0;
+}
+
+.info-box code {
+  background: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #d63384;
+}
+
+.note {
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 10px;
+}
