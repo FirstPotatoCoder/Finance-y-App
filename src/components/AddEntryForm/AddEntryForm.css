@@ -1,0 +1,110 @@
+/* --- GRID LAYOUT --- */
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 20px;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* --- FORM ITEMS --- */
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item label {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* --- TEXT INPUTS (shared base style) --- */
+.form-item input,
+.form-item select {
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: #f8f8f8;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+/* --- DATE INPUT (slightly bigger) --- */
+.form-item input[type="date"] {
+  font-size: 1em;
+  padding: 12px 14px;
+}
+
+/* --- INPUT FOCUS --- */
+.form-item input:focus,
+.form-item select:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* --- SELECT: Make it visually identical to input --- */
+.form-item select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='18' width='18' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,12'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+/* Dim placeholder-style option */
+.form-item select option[value=""] {
+  color: #999;
+}
+
+/* --- FULL-WIDTH NOTE FIELD --- */
+.full-row {
+  grid-column: span 2;
+}
+
+/* --- SAVE BUTTON --- */
+.save-btn {
+  grid-column: span 2;
+  padding: 12px 18px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.save-btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.save-btn:active {
+  transform: translateY(0);
+}
+
+/* --- MESSAGE TEXT --- */
+.message {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #eef7ee;
+  border-left: 5px solid #4CAF50;
+  font-size: 0.95em;
+  color: #2f6d2f;
+  font-weight: 500;
+}
