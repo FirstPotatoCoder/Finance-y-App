@@ -1,0 +1,87 @@
+/* --- FULL-WIDTH NOTE FIELD --- */
+.full-row {
+  grid-column: span 2;
+}
+
+/* --- SAVE BUTTON --- */
+.submit-btn {
+  grid-column: span 2;
+  padding: 12px 18px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.submit-btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* --- MESSAGE TEXT --- */
+.message {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #eef7ee;
+  border-left: 5px solid #4CAF50;
+  font-size: 0.95em;
+  color: #2f6d2f;
+  font-weight: 500;
+}
+
+
+/* REVEAL BUTTON */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 40px; /* space for the eye button */
+}
+
+.eye-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* TEXT BUTTON */
+.extra-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* or space-between / space-around */
+    gap: 6px;                  /* works now! */
+    align-items: center;
+}
+
+.text-link {
+    width: 150px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: none;
+    outline: none;
+}
+.text-link:hover {
+    text-decoration: underline;
+}
+
