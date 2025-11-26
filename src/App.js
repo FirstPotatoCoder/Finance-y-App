@@ -1,39 +1,51 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import { useState } from 'react';
+import { useAuth } from './components/AuthContext/AuthContext'; // make sure path is correct
+
+// Pages
 import Home from './pages/Home/Home';
 import AddEntry from './pages/AddEntry/AddEntry'
 import Login from './pages/Login/Login';
 import SignUp from './pages/Signup/Signup';
-import Page_1 from './pages/Page_1/Page_1';
-import Page_2 from './pages/Page_2/Page_2';
+import Transaction from './pages/Transaction/Transaction';
+import Profile from './pages/Profile/Profile';
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <nav className="sidebar">
-          <Link to="/" className="nav-brand">Finance-y App</Link>
-          <div className="nav-links">
-            <Link to="/login">Login</Link>
-            <Link to="/">Home</Link>
-            <Link to="/addEntry">Add Financial Entries</Link>
-            <Link to="/page_1">Page 1</Link>
-            <Link to="/page_2">Page 2</Link>
-          </div>
-        </nav>
+  const [tempEntries, setTempEntries] = useState([]);
+  const { isLoggedIn } = useAuth(); // get login state
 
-        <main className="content">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/addEntry" element={<AddEntry />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/page_1" element={<Page_1 />} />
-            <Route path="/page_2" element={<Page_2 />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+  return (
+    <div className="App">
+      <nav className="sidebar">
+        <Link to="/" className="nav-brand">Finance-y App</Link>
+        <div className="nav-links">
+          {!isLoggedIn && <Link to="/login">Login</Link>}
+          {isLoggedIn && <Link to="/profile">Profile</Link>}
+          
+          <Link to="/">Home</Link>
+          <Link to="/transaction">Transaction History</Link>
+          <Link to="/addEntry">Add Financial Entries</Link>
+        </div>
+      </nav>
+
+      <main className="content">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route 
+            path="/addEntry" 
+            element={<AddEntry tempEntries={tempEntries} setTempEntries={setTempEntries} />} 
+          />
+          <Route 
+            path="/transaction" 
+            element={<Transaction tempEntries={tempEntries} />} 
+          />
+          <Route path="/signup" element={<SignUp />} />
+          {isLoggedIn && <Route path="/profile" element={<Profile />} />}
+        </Routes>
+      </main>
+    </div>
   );
 }
 

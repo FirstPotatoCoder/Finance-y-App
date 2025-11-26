@@ -7,37 +7,52 @@ export default function SignUpForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [message, setMessage] = useState();
+    const [message, setMessage] = useState("");
+
+    const validateEmail = (email) => {
+        // Simple regex for basic email validation
+        return /^\S+@\S+\.\S+$/.test(email);
+    }
 
     const handleSignUp = (e) => {
         e.preventDefault();
 
-        if (!username || !password || !email) {
+        // Basic validation
+        if (!email || !username || !password) {
             setMessage("❌ Please fill in Email, Username, and Password!");
             return;
         }
 
-        try {
-            // Load existing credentials or start empty
-            const existing = JSON.parse(localStorage.getItem("user_credientials")) || [];
+        if (!validateEmail(email)) {
+            setMessage("❌ Please enter a valid email address.");
+            return;
+        }
 
-            // Optional: prevent duplicate usernames
-            const duplicate = existing.find(user => user.username === username);
+        try {
+            // Load existing credentials from localStorage
+            const existing = JSON.parse(localStorage.getItem("user_credentials")) || [];
+
+            // Check if username already exists (case-insensitive)
+            const duplicate = existing.find(
+                user => user.username.toLowerCase() === username.toLowerCase()
+            );
+
             if (duplicate) {
-                setMessage("❌ Username already exists!");
+                setMessage("❌ Username already exists! Please choose another.");
                 return;
             }
 
-            // Build new user entry
-            const newUser = {
-                email,
-                username,
-                password
-            };
+            // Create new user object
+            const newUser = { 
+                email, 
+                username, 
+                password,
+                registrationDate: new Date().toISOString()
+             };
 
             // Save updated array back to localStorage
             existing.push(newUser);
-            localStorage.setItem("user_credientials", JSON.stringify(existing));
+            localStorage.setItem("user_credentials", JSON.stringify(existing));
 
             setMessage("✅ Sign Up successful!");
             // Clear form
@@ -49,7 +64,6 @@ export default function SignUpForm() {
             setMessage(`❌ Failed to save: ${error.message}`);
         }
     };
-
 
     return (
         <form className="grid-form" onSubmit={handleSignUp}>
@@ -79,8 +93,6 @@ export default function SignUpForm() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                 />
-
-                {/* Eye toggle button */}
                 <button
                     type="button"
                     className="eye-btn"
@@ -93,9 +105,7 @@ export default function SignUpForm() {
             <button type="submit" className="submit-btn">Sign Up</button>
 
             {message && (
-                <div className="message full-row">
-                    {message}
-                </div>
+                <div className="message full-row">{message}</div>
             )}
 
             <div className="extra-links">

@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useAuth } from '../AuthContext/AuthContext';
 import './AddEntryForm.css';
 
-export default function AddEntryForm() {
+export default function AddEntryForm({ tempEntries, setTempEntries }) {
+    const { isLoggedIn, username } = useAuth();
     const [type, setType] = useState("");
     const [category, setCategory] = useState("");
     const [amount, setAmount] = useState("");
@@ -12,51 +14,39 @@ export default function AddEntryForm() {
     const handleSave = (e) => {
         e.preventDefault();
 
-        // Basic validation
         if (!type || !category || !amount || !date) {
             setMessage("❌ Please fill in Type, Category, Amount, and Date.");
             return;
         }
 
-        // Build an entry object
-        const entry = {
-            type,
-            category,
-            amount: Number(amount),
-            date,
-            note,
-        };
+        const entry = { type, category, amount: Number(amount), date, note };
 
-        try {
-            // Save to localStorage as an array
-            const existing = JSON.parse(localStorage.getItem("financeEntries")) || [];
-            existing.push(entry);
-
-            localStorage.setItem("financeEntries", JSON.stringify(existing));
-
-            setMessage("✅ Entry saved successfully!");
-
-            // Clear form
-            setType("");
-            setCategory("");
-            setAmount("");
-            setDate("");
-            setNote("");
-
-        } catch (error) {
-            setMessage(`❌ Failed to save: ${error.message}`);
+        if (isLoggedIn) {
+            const savedData = JSON.parse(localStorage.getItem("financeEntries")) || {};
+            const userEntries = savedData[username] || [];
+            userEntries.push(entry);
+            savedData[username] = userEntries;
+            localStorage.setItem("financeEntries", JSON.stringify(savedData));
+        } else {
+            // Guest mode → update temporary state
+            setTempEntries([...tempEntries, entry]);
         }
+
+        setMessage("✅ Entry saved successfully!");
+
+        // Reset form
+        setType("");
+        setCategory("");
+        setAmount("");
+        setDate("");
+        setNote("");
     };
 
     return (
-        <form onSubmit={handleSave} className="grid-form">
+        <form className="grid-form" onSubmit={handleSave}>
             <div className="form-item">
                 <label>Type:</label>
-                <select
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
-                    style={{ color: type === "" ? "#999" : "#333" }}
-                >
+                <select value={type} onChange={(e) => setType(e.target.value)}>
                     <option value="">Select type...</option>
                     <option value="expense">Expense</option>
                     <option value="income">Income</option>
@@ -66,11 +56,7 @@ export default function AddEntryForm() {
 
             <div className="form-item">
                 <label>Category:</label>
-                <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    style={{ color: category === "" ? "#999" : "#333" }}
-                >
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="">Select category...</option>
                     <option value="groceries">Groceries</option>
                     <option value="rent">Rent</option>
@@ -84,36 +70,21 @@ export default function AddEntryForm() {
 
             <div className="form-item">
                 <label>Amount:</label>
-                <input
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    placeholder="e.g., 50"
-                />
+                <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
             </div>
 
             <div className="form-item">
                 <label>Date:</label>
-                <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                />
+                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
             </div>
 
             <div className="form-item full-row">
                 <label>Note:</label>
-                <input
-                    type="text"
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    placeholder="Optional details"
-                />
+                <input type="text" value={note} onChange={(e) => setNote(e.target.value)} />
             </div>
 
-            <button type="submit" className="save-btn">💰 Save</button>
+            <button className="save-btn" type="submit">💰 Save</button>
 
-            {/* --- Message Display --- */}
             {message && <div className="message">{message}</div>}
         </form>
     );
