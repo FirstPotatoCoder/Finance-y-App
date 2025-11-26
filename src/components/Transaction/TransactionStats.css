@@ -30,15 +30,15 @@
 .stat-amount {
   font-size: 2em;
   font-weight: 700;
-  color: #333;
 }
 
+/* Income / Expense colors */
 .stat-amount.positive {
-  color: #4caf50;
+  color: #4caf50; /* green for positive */
 }
 
 .stat-amount.negative {
-  color: #f44336;
+  color: #f44336; /* red for negative */
 }
 
 .stat-amount.income {
@@ -49,19 +49,26 @@
   color: #f44336;
 }
 
+/* Balance card with gradient background */
 .balance-card {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: white; /* default text white */
 }
 
 .balance-card .stat-label {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.balance-card .stat-amount {
-  color: white;
+/* Allow dynamic positive/negative color to override white */
+.balance-card .stat-amount.positive {
+  color: #4caf50 !important;
 }
 
+.balance-card .stat-amount.negative {
+  color: #f44336 !important;
+}
+
+/* Other cards */
 .income-card {
   border-left: 5px solid #4caf50;
 }

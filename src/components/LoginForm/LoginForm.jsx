@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../AuthContext/AuthContext';
 import './LoginForm.css';
 
 export default function Login() {
+    const { login } = useAuth();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [message, setMessage] = useState();
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -16,17 +19,16 @@ export default function Login() {
             return;
         }
 
-        // Load saved credentials
-        const existing = JSON.parse(localStorage.getItem("user_credientials")) || [];
+        const existing = JSON.parse(localStorage.getItem("user_credentials")) || [];
 
-        // Find matching user
         const match = existing.find(
             (user) => user.username === username && user.password === password
         );
 
         if (match) {
+            login(username);  // 👈 save username globally
             setMessage("✅ Login successful!");
-            // Optionally redirect or trigger login action here
+            navigate("/"); // or "/home" if that’s your home route
         } else {
             setMessage("❌ Invalid username or password");
         }
