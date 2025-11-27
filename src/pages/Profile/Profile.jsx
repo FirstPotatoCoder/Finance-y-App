@@ -20,8 +20,6 @@ export default function Profile() {
     expenses: userExpenses.length,
   };
 
-
-
   // Generic description
   const description = "I'm just starting to keep track of my money and try to save a little here and there. Learning as I go and hoping to get better at planning my spending.";
 

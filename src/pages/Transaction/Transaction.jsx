@@ -68,7 +68,12 @@ export default function Transaction({ tempEntries }) {
             <div className="transaction-header">
                 <h1>Transaction History</h1>
                 {!isLoggedIn && <p style={{ color: 'orange' }}>⚠️ Guest Mode: Entries are Temporary</p>}
-                {isLoggedIn && <p>Welcome back, {username}!</p>}
+                {
+                isLoggedIn && 
+                <p style={{ color: 'green', fontWeight: 'bold' }}>
+                    👋 Welcome back, {username}!
+                </p>
+                }
             </div>
 
             <TransactionStats transactions={filteredTransactions} />

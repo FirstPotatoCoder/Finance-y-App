@@ -8,21 +8,23 @@ export default function AddEntry({ tempEntries = [], setTempEntries }) {
 
     return (
         <div className="entry-container">
-            <h1>Financial Entries</h1>
-            <p className="description">
-                Add and track your expenses, income, and transfers with ease.
-            </p>
+            <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                <h1>Financial Entries</h1>
+                <p className="description">
+                    Add and track your expenses, income, and transfers with ease.
+                </p>
 
-            {/* --- Notification --- */}
-            {isLoggedIn ? (
-                <p style={{ color: 'green', fontWeight: 'bold' }}>
-                    👋 Welcome back, {username}!
-                </p>
-            ) : (
-                <p style={{ color: 'orange', fontWeight: 'bold' }}>
-                    ⚠️ Login to Make Data Persistent
-                </p>
-            )}
+                {/* --- Notification --- */}
+                {isLoggedIn ? (
+                    <p style={{ color: 'green', fontWeight: 'bold' }}>
+                        👋 Welcome back, {username}!
+                    </p>
+                ) : (
+                    <p style={{ color: 'orange', fontWeight: 'bold' }}>
+                        ⚠️ Login to Make Data Persistent
+                    </p>
+                )}
+            </div>
 
             {/* --- Add Entry Form --- */}
             <AddEntryForm tempEntries={tempEntries} setTempEntries={setTempEntries} />
