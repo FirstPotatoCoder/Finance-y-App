@@ -1,0 +1,98 @@
+/* ===== DASHBOARD WRAPPER ===== */
+.dashboard-wrapper {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  align-items: stretch; /* ensures both columns stretch equally */
+}
+
+/* ===== LEFT COLUMN 75% ===== */
+.left-column {
+  flex: 3; /* 75% */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ===== RIGHT COLUMN 25% ===== */
+.right-column {
+  flex: 1; /* 25% */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== SUMMARY CARDS ===== */
+.summary-row {
+  display: flex;
+  gap: 20px;
+}
+
+.summary-card {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== CHARTS SECTION ===== */
+.charts-split-row {
+  display: flex;
+  gap: 20px;
+}
+
+.chart-box {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== SIDE LIST / RIGHT COLUMN CONTENT ===== */
+.side-list {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex: 1; /* fill full height of right column */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* keep content at top */
+}
+
+.side-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.side-track {
+  flex: 1;
+  height: 10px;
+  background: #eee;
+  border-radius: 6px;
+}
+
+.side-fill {
+  height: 10px;
+  border-radius: 6px;
+}
+
+/* ===== COLORS ===== */
+:root {
+  --color-0: #4caf50;
+  --color-1: #ffb74d;
+  --color-2: #42a5f5;
+  --color-3: #ef5350;
+  --color-4: #8e24aa;
+  --color-5: #90a4ae;
+}
+
+/* ===== OPTIONAL: MAKE PIE & BAR CHARTS FULL HEIGHT ===== */
+.charts-split-row .chart-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useAuth } from './components/AuthContext/AuthContext'; // make sure path is correct
 
 // Pages
-import Home from './pages/Home/Home';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 import AddEntry from './pages/AddEntry/AddEntry'
 import Login from './pages/Login/Login';
 import SignUp from './pages/Signup/Signup';
@@ -23,7 +23,7 @@ function App() {
           {!isLoggedIn && <Link to="/login">Login</Link>}
           {isLoggedIn && <Link to="/profile">Profile</Link>}
           
-          <Link to="/">Home</Link>
+          <Link to="/">Dashboard</Link>
           <Link to="/transaction">Transaction History</Link>
           <Link to="/addEntry">Add Financial Entries</Link>
         </div>
@@ -32,7 +32,7 @@ function App() {
       <main className="content">
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<DashboardPage tempEntries={tempEntries} />} />
           <Route 
             path="/addEntry" 
             element={<AddEntry tempEntries={tempEntries} setTempEntries={setTempEntries} />} 
