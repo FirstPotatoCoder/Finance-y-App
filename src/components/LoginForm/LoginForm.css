@@ -1,9 +1,46 @@
-/* --- FULL-WIDTH NOTE FIELD --- */
-.full-row {
-  grid-column: span 2;
+/* --- AUTH FORM --- */
+.auth-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
 }
 
-/* --- SAVE BUTTON --- */
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item label {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form-item input {
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: #f8f8f8;
+  outline: none;
+  transition: 0.25s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-item input:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* --- FULL-WIDTH NOTE FIELD --- */
+.full-row {
+  grid-column: span 1;
+}
+
+/* --- SUBMIT BUTTON --- */
 .submit-btn {
   grid-column: span 2;
   padding: 12px 18px;
@@ -39,49 +76,80 @@
   font-weight: 500;
 }
 
-
 /* REVEAL BUTTON */
 .password-wrapper {
-    position: relative;
+  position: relative;
 }
 
 .password-wrapper input {
-    padding-right: 40px; /* space for the eye button */
+  padding-right: 40px; /* space for the eye button */
 }
 
 .eye-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 /* TEXT BUTTON */
 .extra-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   /* or space-between / space-around */
-    gap: 6px;                  /* works now! */
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
 }
 
 .text-link {
-    width: 150px;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    color: #007bff;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: none;
-    outline: none;
-}
-.text-link:hover {
-    text-decoration: underline;
+  width: 150px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: none;
+  outline: none;
 }
 
+.text-link:hover {
+  text-decoration: underline;
+}
+
+/* ========= RESPONSIVE ========= */
+
+@media (min-width: 769px) {
+  .auth-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .password-wrapper input {
+    padding-right: 35px;
+  }
+
+  .eye-btn {
+    right: 8px;
+    font-size: 16px;
+  }
+
+  .extra-links {
+    gap: 4px;
+  }
+
+  .text-link {
+    font-size: 12px;
+  }
+
+  .submit-btn {
+    padding: 9px 14px;
+    font-size: 0.95em;
+  }
+}
