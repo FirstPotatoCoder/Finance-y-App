@@ -18,12 +18,19 @@ export default function Transaction({ tempEntries }) {
         let entries = [];
 
         if (isLoggedIn) {
-            const saved = JSON.parse(localStorage.getItem("financeEntries")) || {};
-            entries = saved[username] || [];
+            // Load unified financeData
+            const saved = JSON.parse(localStorage.getItem("financeData")) || {};
+
+            // Ensure user exists & has transactions array
+            const userData = saved[username] || { transactions: [], goals: [] };
+
+            entries = userData.transactions;
         } else {
+            // Guest mode
             entries = tempEntries || [];
         }
 
+        // Map entries to the UI format
         const mapped = entries.map((entry) => ({
             date: entry.date,
             description: entry.note || entry.category,

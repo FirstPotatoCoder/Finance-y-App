@@ -10,9 +10,11 @@ import Login from './pages/Login/Login';
 import SignUp from './pages/Signup/Signup';
 import Transaction from './pages/Transaction/Transaction';
 import Profile from './pages/Profile/Profile';
+import AddGoal from './pages/AddGoal/AddGoal';
 
 function App() {
   const [tempEntries, setTempEntries] = useState([]);
+  const [tempGoals, setTempGoals] = useState([]);
   const { isLoggedIn } = useAuth(); // get login state
 
   return (
@@ -26,13 +28,14 @@ function App() {
           <Link to="/">Dashboard</Link>
           <Link to="/transaction">Transaction History</Link>
           <Link to="/addEntry">Add Financial Entries</Link>
+          <Link to="/addGoal">Add Goals</Link>
         </div>
       </nav>
 
       <main className="content">
-        <Routes>
+        <Routes> 
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<DashboardPage tempEntries={tempEntries} />} />
+          <Route path="/" element={<DashboardPage tempEntries={tempEntries} tempGoals={tempGoals} />} />
           <Route 
             path="/addEntry" 
             element={<AddEntry tempEntries={tempEntries} setTempEntries={setTempEntries} />} 
@@ -42,6 +45,11 @@ function App() {
             element={<Transaction tempEntries={tempEntries} />} 
           />
           <Route path="/signup" element={<SignUp />} />
+          <Route 
+            path="/addGoal" 
+            element={<AddGoal tempGoals={tempGoals} setTempGoals={setTempGoals} />} 
+          />
+
           {isLoggedIn && <Route path="/profile" element={<Profile />} />}
         </Routes>
       </main>

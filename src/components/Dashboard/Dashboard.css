@@ -96,3 +96,34 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.goal-side-row {
+  display: flex;
+  flex-direction: column; /* stack text above bar */
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.goal-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.goal-track {
+  width: 100%;
+  height: 12px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.goal-fill {
+  height: 100%; /* fill track height */
+  border-radius: 6px;
+}
+
+.goal-percent {
+  font-size: 0.85rem;
+  color: #555;
+  text-align: right;
+}

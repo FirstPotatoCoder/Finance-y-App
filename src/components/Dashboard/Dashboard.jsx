@@ -1,5 +1,6 @@
-// Dashboard.jsx (Updated 75/25 Layout + Recharts)
+// Dashboard.jsx (Goals in right column)
 import React, { useMemo } from "react";
+import { useAuth } from "../AuthContext/AuthContext";
 import {
   PieChart,
   Pie,
@@ -13,7 +14,11 @@ import {
 } from "recharts";
 import "./Dashboard.css";
 
-export default function Dashboard({ transactions }) {
+export default function Dashboard({ userData, tempGoals = [] }) {
+  const transactions = useMemo(() => userData.transactions || [], [userData.transactions]);
+  const { isLoggedIn } = useAuth(); // get login status
+  const goals = isLoggedIn ? (userData.goals || []) : tempGoals;
+
   // === SUMMARY CALCULATIONS ===
   const totalEntries = transactions.length;
   const totalIncomeEntries = transactions.filter(t => t.type === "Income").length;
@@ -28,11 +33,11 @@ export default function Dashboard({ transactions }) {
         map[t.category] = (map[t.category] || 0) + t.amount;
       });
 
-    return Object.entries(map).map(([category, amount]) => ({ category, value: amount }));
+    return Object.entries(map).map(([category, value]) => ({ category, value }));
   }, [transactions]);
 
   // === GROUP EXPENSE BY CATEGORY ===
-  const { expenseBarData, expensePercentData } = useMemo(() => {
+  const { expenseBarData } = useMemo(() => {
     const exp = {};
     transactions
       .filter(t => t.type === "Expense")
@@ -62,6 +67,9 @@ export default function Dashboard({ transactions }) {
     "var(--color-4)",
     "var(--color-5)",
   ];
+
+  // === HELPER FOR GOAL PROGRESS ===
+  const calculateProgress = (current, target) => Math.min((current / target) * 100, 100);
 
   return (
     <div className="dashboard-wrapper">
@@ -122,10 +130,7 @@ export default function Dashboard({ transactions }) {
                   <Tooltip />
                   <Bar dataKey="amount">
                     {expenseBarData.map((entry, index) => (
-                      <Cell
-                        key={index}
-                        fill={COLORS[index % COLORS.length]}
-                      />
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Bar>
                 </BarChart>
@@ -135,28 +140,31 @@ export default function Dashboard({ transactions }) {
         </div>
       </div>
 
-      {/* RIGHT COLUMN 25% */}
+      {/* RIGHT COLUMN 25%: GOALS */}
       <div className="right-column">
         <div className="side-list">
-          <h3>Top Spending Categories</h3>
-          {expensePercentData.length === 0 ? (
-            <p>No expense data</p>
+          <h3>Goals Progress</h3>
+          {goals.length === 0 ? (
+            <p>No goals yet</p>
           ) : (
-            expensePercentData.map((item, idx) => (
-              <div key={idx} className="side-row">
-                <p>{item.category}</p>
-                <div className="side-track">
-                  <div
-                    className="side-fill"
-                    style={{
-                      width: `${item.percent}%`,
-                      background: COLORS[idx % COLORS.length],
-                    }}
-                  ></div>
+            goals.map((goal, idx) => {
+              const progress = calculateProgress(goal.currentAmount, goal.targetAmount);
+              return (
+                <div key={idx} className="goal-side-row">
+                  <p className="goal-name">{goal.goalName}</p>
+                  <div className="goal-track">
+                    <div
+                      className="goal-fill"
+                      style={{
+                        width: `${progress}%`,
+                        background: COLORS[idx % COLORS.length],
+                      }}
+                    ></div>
+                  </div>
+                  <span className="goal-percent">{progress.toFixed(1)}%</span>
                 </div>
-                <span>{item.percent.toFixed(1)}%</span>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
       </div>
