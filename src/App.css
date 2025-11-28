@@ -48,3 +48,43 @@
   flex: 1;
   padding: 30px;
 }
+
+/* ========= RESPONSIVE LAYOUT ========= */
+
+@media (max-width: 900px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    padding: 16px 14px;
+  }
+
+  .nav-brand {
+    font-size: 1.1em;
+  }
+
+  .content {
+    padding: 16px;
+  }
+}

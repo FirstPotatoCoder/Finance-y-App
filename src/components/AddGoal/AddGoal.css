@@ -370,3 +370,22 @@
   transform: translateY(0);
 }
 
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .add-goal-container {
+    margin: 30px 16px;
+    padding: 20px;
+  }
+
+  .goal-form {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .full-row,
+  .save-btn,
+  .message {
+    grid-column: span 1;
+  }
+}
+

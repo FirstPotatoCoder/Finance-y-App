@@ -21,3 +21,29 @@
   color: #666;
   margin: 0;
 }
+
+/* ========= RESPONSIVE TRANSACTION PAGE ========= */
+
+@media (max-width: 900px) {
+  .transaction-page {
+    padding: 20px;
+  }
+
+  .transaction-header h1 {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 600px) {
+  .transaction-page {
+    padding: 16px;
+  }
+
+  .transaction-header h1 {
+    font-size: 1.7em;
+  }
+
+  .transaction-header p {
+    font-size: 1em;
+  }
+}

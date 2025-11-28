@@ -127,3 +127,22 @@
   color: #555;
   text-align: right;
 }
+
+/* ========= RESPONSIVE DASHBOARD ========= */
+
+@media (max-width: 1024px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+
+  .right-column {
+    flex: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-row,
+  .charts-split-row {
+    flex-direction: column;
+  }
+}
