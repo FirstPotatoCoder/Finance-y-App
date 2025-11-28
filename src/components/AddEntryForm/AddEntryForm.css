@@ -102,3 +102,16 @@
   color: #2f6d2f;
   font-weight: 500;
 }
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .grid-form {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .full-row,
+  .save-btn {
+    grid-column: span 1;
+  }
+}

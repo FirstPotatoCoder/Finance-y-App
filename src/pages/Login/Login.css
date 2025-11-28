@@ -11,3 +11,12 @@
   margin-top: 0;
   color: #333;
 }
+
+/* ========= RESPONSIVE AUTH CONTAINER ========= */
+
+@media (max-width: 600px) {
+  .page-container {
+    margin: 20px;
+    padding: 20px;
+  }
+}

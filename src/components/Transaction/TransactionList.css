@@ -182,4 +182,8 @@
   .col-category::before {
     content: 'Category: ';
   }
+
+  .transaction-empty {
+    padding: 40px 16px;
+  }
 }
