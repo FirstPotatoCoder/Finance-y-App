@@ -14,9 +14,22 @@
 
 /* ========= RESPONSIVE AUTH CONTAINER ========= */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .page-container {
-    margin: 20px;
+    margin: 30px 16px;
     padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    margin: 15px;
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .page-container h2 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
   }
 }
