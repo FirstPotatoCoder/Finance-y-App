@@ -36,12 +36,6 @@
   transition: 0.25s ease;
 }
 
-/* --- DATE INPUT (slightly bigger) --- */
-.form-item input[type="date"] {
-  font-size: 1em;
-  padding: 12px 14px;
-}
-
 /* --- INPUT FOCUS --- */
 .form-item input:focus,
 .form-item select:focus {

@@ -8,9 +8,9 @@ export default function Profile() {
   const registrationDate =
     localStorage.getItem("registrationDate") || new Date().toLocaleDateString();
 
-    const storedData = localStorage.getItem("financeEntries");
+    const storedData = localStorage.getItem("financeData");
     const financeEntries = storedData ? JSON.parse(storedData) : {};
-    const userTransactions = financeEntries[username] || [];
+    const userTransactions = financeEntries[username].transactions || [];
     const userIncomes = userTransactions.filter(item => item.type === "income");
     const userExpenses = userTransactions.filter(item => item.type === "expense");
 

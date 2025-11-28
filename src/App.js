@@ -28,14 +28,14 @@ function App() {
           <Link to="/">Dashboard</Link>
           <Link to="/transaction">Transaction History</Link>
           <Link to="/addEntry">Add Financial Entries</Link>
-          <Link to="/addGoal">🎯 Add Goals</Link>
+          <Link to="/addGoal">Add Goals</Link>
         </div>
       </nav>
 
       <main className="content">
         <Routes> 
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<DashboardPage tempEntries={tempEntries} />} />
+          <Route path="/" element={<DashboardPage tempEntries={tempEntries} tempGoals={tempGoals} />} />
           <Route 
             path="/addEntry" 
             element={<AddEntry tempEntries={tempEntries} setTempEntries={setTempEntries} />} 

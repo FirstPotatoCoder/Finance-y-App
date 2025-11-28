@@ -19,8 +19,9 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         let loadedGoals = [];
         
         if (isLoggedIn) {
-            const savedData = JSON.parse(localStorage.getItem("financeGoals")) || {};
-            loadedGoals = savedData[username] || [];
+            const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
+            const userData = savedData[username] || { transactions: [], goals: [] };
+            loadedGoals = userData.goals;
         } else {
             loadedGoals = tempGoals || [];
         }
@@ -67,11 +68,13 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         let updatedGoals = [];
 
         if (isLoggedIn) {
-            const savedData = JSON.parse(localStorage.getItem("financeGoals")) || {};
-            const userGoals = savedData[username] || [];
-            updatedGoals = [...userGoals, goal];
-            savedData[username] = updatedGoals;
-            localStorage.setItem("financeGoals", JSON.stringify(savedData));
+            const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
+            const userData = savedData[username] || { transactions: [], goals: [] };
+
+            updatedGoals = [...userData.goals, goal];
+            savedData[username] = { ...userData, goals: updatedGoals };
+
+            localStorage.setItem("financeData", JSON.stringify(savedData));
         } else {
             // Guest mode → update temporary state
             updatedGoals = [...tempGoals, goal];
@@ -98,11 +101,13 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         let updatedGoals = [];
 
         if (isLoggedIn) {
-            const savedData = JSON.parse(localStorage.getItem("financeGoals")) || {};
-            const userGoals = savedData[username] || [];
-            updatedGoals = userGoals.filter(goal => goal.id !== goalId);
-            savedData[username] = updatedGoals;
-            localStorage.setItem("financeGoals", JSON.stringify(savedData));
+            const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
+            const userData = savedData[username] || { transactions: [], goals: [] };
+
+            updatedGoals = userData.goals.filter(g => g.id !== goalId);
+
+            savedData[username] = { ...userData, goals: updatedGoals };
+            localStorage.setItem("financeData", JSON.stringify(savedData));
         } else {
             updatedGoals = tempGoals.filter(goal => goal.id !== goalId);
             if (setTempGoals) {
@@ -139,9 +144,10 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         let updatedGoals = [];
 
         if (isLoggedIn) {
-            const savedData = JSON.parse(localStorage.getItem("financeGoals")) || {};
-            const userGoals = savedData[username] || [];
-            updatedGoals = userGoals.map(goal => {
+            const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
+            const userData = savedData[username] || { transactions: [], goals: [] };
+
+            updatedGoals = userData.goals.map(goal => {
                 if (goal.id === goalId) {
                     const target = goal.targetAmount;
                     const finalAmount = newAmount > target ? target : newAmount;
@@ -149,8 +155,9 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                 }
                 return goal;
             });
-            savedData[username] = updatedGoals;
-            localStorage.setItem("financeGoals", JSON.stringify(savedData));
+
+            savedData[username] = { ...userData, goals: updatedGoals };
+            localStorage.setItem("financeData", JSON.stringify(savedData));
         } else {
             updatedGoals = tempGoals.map(goal => {
                 if (goal.id === goalId) {

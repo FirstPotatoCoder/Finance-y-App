@@ -19,16 +19,30 @@ export default function AddEntryForm({ tempEntries, setTempEntries }) {
             return;
         }
 
-        const entry = { type, category, amount: Number(amount), date, note };
+        const entry = { 
+            type, 
+            category, 
+            amount: Number(amount), 
+            date, 
+            note 
+        };
 
         if (isLoggedIn) {
-            const savedData = JSON.parse(localStorage.getItem("financeEntries")) || {};
-            const userEntries = savedData[username] || [];
-            userEntries.push(entry);
-            savedData[username] = userEntries;
-            localStorage.setItem("financeEntries", JSON.stringify(savedData));
+            // Load existing financeData
+            const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
+
+            // Ensure user structure exists
+            const userData = savedData[username] || { transactions: [], goals: [] };
+
+            // Add new entry to transactions
+            userData.transactions.push(entry);
+
+            // Save back
+            savedData[username] = userData;
+            localStorage.setItem("financeData", JSON.stringify(savedData));
+
         } else {
-            // Guest mode → update temporary state
+            // Guest mode → update temporary entries
             setTempEntries([...tempEntries, entry]);
         }
 
@@ -70,7 +84,7 @@ export default function AddEntryForm({ tempEntries, setTempEntries }) {
 
             <div className="form-item">
                 <label>Amount:</label>
-                <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                <input type="number" placeholder='666' value={amount} onChange={(e) => setAmount(e.target.value)} />
             </div>
 
             <div className="form-item">
@@ -80,7 +94,7 @@ export default function AddEntryForm({ tempEntries, setTempEntries }) {
 
             <div className="form-item full-row">
                 <label>Note:</label>
-                <input type="text" value={note} onChange={(e) => setNote(e.target.value)} />
+                <input type="text" placeholder='Magically Appeared' value={note} onChange={(e) => setNote(e.target.value)} />
             </div>
 
             <button className="save-btn" type="submit">💰 Save</button>
