@@ -1,11 +1,14 @@
 import React from 'react';
-import './TransactionStats.css';
+import './Transaction.css';
 
 function TransactionStats({ transactions }) {
+
+  //Calculate income
   const totalIncome = transactions
     .filter((t) => t.type === 'Income')
     .reduce((sum, t) => sum + parseFloat(t.amount), 0);
 
+    //Calculate expense
   const totalExpense = transactions
     .filter((t) => t.type === 'Expense')
     .reduce((sum, t) => sum + parseFloat(t.amount), 0);
