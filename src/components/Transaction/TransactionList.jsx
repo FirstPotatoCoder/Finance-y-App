@@ -10,6 +10,7 @@ function TransactionList({ transactions }) {
     );
   }
 
+  // Render table 
   return (
     <div className="transaction-list">
       <div className="transaction-table-header">
@@ -20,6 +21,7 @@ function TransactionList({ transactions }) {
         <div className="col-category">Category</div>
       </div>
 
+      {/* Transaction rows */}
       {transactions.map((transaction, index) => (
         <div
           key={index}
