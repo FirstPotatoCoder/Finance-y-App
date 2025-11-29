@@ -8,7 +8,7 @@ export default function Login() {
             <h1>Hello!</h1>
             <p className="description">Still remember your credentials, I hope?</p>
 
-            {/* Call the component multiple times with different props */}
+            {/* render our login component */}
             <LoginForm />
         </div>
     );
