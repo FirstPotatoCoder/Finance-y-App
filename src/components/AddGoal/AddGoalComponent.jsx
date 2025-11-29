@@ -3,9 +3,14 @@ import { useAuth } from '../AuthContext/AuthContext';
 import './AddGoal.css';
 
 export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
+    // get auth state and username
     const { isLoggedIn, username } = useAuth();
-    const [goals, setGoals] = useState([]);
+    
+
     const [goalName, setGoalName] = useState("");
+
+    const [goals, setGoals] = useState([]);
+
     const [targetAmount, setTargetAmount] = useState("");
     const [currentAmount, setCurrentAmount] = useState("");
     const [deadline, setDeadline] = useState("");
@@ -14,32 +19,37 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
     const [editingGoalId, setEditingGoalId] = useState(null);
     const [editAmount, setEditAmount] = useState("");
 
-    // Load goals on mount and when dependencies change
+    // Load goals goal from local strorage when user logged in 
     useEffect(() => {
         let loadedGoals = [];
-        
         if (isLoggedIn) {
+            // load goals from lacal storage
             const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
             const userData = savedData[username] || { transactions: [], goals: [] };
             loadedGoals = userData.goals;
         } else {
+            // use temp gaol if guest mode
             loadedGoals = tempGoals || [];
+
         }
-        
         setGoals(loadedGoals);
     }, [isLoggedIn, username, tempGoals]);
-
+    // validate and create new goal
     const handleSave = (e) => {
-        e.preventDefault();
 
+        e.preventDefault();
+        // check fields input
         if (!goalName || !targetAmount || !deadline) {
+        
             setMessage("❌ Please fill in Goal Name, Target Amount, and Deadline.");
             return;
-        }
 
+        }
+        // converting input
         const target = Number(targetAmount);
         const current = currentAmount ? Number(currentAmount) : 0;
 
+        // validate and set message based on input
         if (target <= 0) {
             setMessage("❌ Target amount must be greater than 0.");
             return;
@@ -51,10 +61,13 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         }
 
         if (current > target) {
+
             setMessage("❌ Current amount cannot exceed target amount.");
             return;
+
         }
 
+        // create goal obj
         const goal = {
             id: Date.now(),
             goalName,
@@ -68,6 +81,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         let updatedGoals = [];
 
         if (isLoggedIn) {
+            // save goal to local storage
             const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
             const userData = savedData[username] || { transactions: [], goals: [] };
 
@@ -76,7 +90,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
 
             localStorage.setItem("financeData", JSON.stringify(savedData));
         } else {
-            // Guest mode → update temporary state
+            // if Guest mode update temp state
             updatedGoals = [...tempGoals, goal];
             if (setTempGoals) {
                 setTempGoals(updatedGoals);
@@ -85,18 +99,19 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
 
         setGoals(updatedGoals);
         setMessage("✅ Goal created successfully!");
-
-        // Reset form
+        // Reset form after submit
         setGoalName("");
         setTargetAmount("");
         setCurrentAmount("");
         setDeadline("");
         setDescription("");
-
         // Clear message after 3 seconds
         setTimeout(() => setMessage(""), 3000);
     };
 
+
+
+    // delete goal fnc 
     const handleDelete = (goalId) => {
         let updatedGoals = [];
 
@@ -117,12 +132,12 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
 
         setGoals(updatedGoals);
     };
-
+    // start edit
     const handleStartEdit = (goal) => {
         setEditingGoalId(goal.id);
         setEditAmount(goal.currentAmount.toString());
     };
-
+    // cancel edit
     const handleCancelEdit = () => {
         setEditingGoalId(null);
         setEditAmount("");
@@ -135,12 +150,11 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         }
 
         const newAmount = Number(editAmount);
-
+        // validate input
         if (newAmount < 0) {
             setMessage("❌ Amount cannot be negative.");
             return;
         }
-
         let updatedGoals = [];
 
         if (isLoggedIn) {
@@ -159,6 +173,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
             savedData[username] = { ...userData, goals: updatedGoals };
             localStorage.setItem("financeData", JSON.stringify(savedData));
         } else {
+            // update gaol in temp
             updatedGoals = tempGoals.map(goal => {
                 if (goal.id === goalId) {
                     const target = goal.targetAmount;
@@ -181,19 +196,22 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         setTimeout(() => setMessage(""), 3000);
     };
 
+    // calculate into %
     const calculateProgress = (current, target) => {
         return Math.min((current / target) * 100, 100).toFixed(1);
     };
+
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     };
 
+
+    // calculate due date
     const isOverdue = (deadline) => {
         return new Date(deadline) < new Date();
     };
-
     return (
         <div className="add-goal-container">
             {message && <div className="message">{message}</div>}
@@ -215,6 +233,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                         />
                     </div>
 
+                    {/* ammont to save */}
                     <div className="form-item">
                         <label>Target Amount ($):</label>
                         <input 
@@ -238,7 +257,8 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                             step="0.01"
                         />
                     </div>
-
+                    
+                    {/* goal deadline */}
                     <div className="form-item">
                         <label>Deadline:</label>
                         <input 
@@ -265,6 +285,8 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
             {/* list the existing goals  */}
             <div className="goals-section">
                 <h2>Active Goals</h2>
+                
+                {/* no goal style */}
                 {goals.length === 0 ? (
                     <div className="goals-list empty">
                         <p>No goals yet. Create your first goal below!</p>
@@ -277,6 +299,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                             const overdue = isOverdue(goal.deadline);
                             
                             return (
+                                // Card and delete btn
                                 <div key={goal.id} className="goal-card">
                                     <div className="goal-header">
                                         <h3>{goal.goalName}</h3>
@@ -293,6 +316,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                                         <p className="goal-description">{goal.description}</p>
                                     )}
                                     
+                                    {/* progess bar */}
                                     <div className="goal-progress">
                                         <div className="progress-bar-container">
                                             <div 
@@ -300,6 +324,8 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                                                 style={{ width: `${progress}%` }}
                                             ></div>
                                         </div>
+
+                                        {/* current amount and progress */}
                                         <div className="progress-text">
                                             <span>${goal.currentAmount.toLocaleString()}</span>
                                             <span> / </span>
@@ -308,6 +334,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                                         </div>
                                     </div>
                                     
+                                    {/* goal details, date and remainign */}
                                     <div className="goal-details">
                                         <div className="goal-detail-item">
                                             <strong>Remaining:</strong> ${remaining.toLocaleString()}
@@ -321,6 +348,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                                     {/* Update Amount Section */}
                                     <div className="update-amount-section">
                                         {editingGoalId === goal.id ? (
+                                            // save/cancel
                                             <div className="update-amount-form">
                                                 <div className="update-input-group">
                                                     <label>Update Current Amount:</label>
