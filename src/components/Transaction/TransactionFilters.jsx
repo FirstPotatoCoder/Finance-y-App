@@ -1,5 +1,5 @@
 import React from 'react';
-import './TransactionFilters.css';
+import './Transaction.css';
 
 function TransactionFilters({
   filterType,
@@ -25,6 +25,7 @@ function TransactionFilters({
         </select>
       </div>
 
+      {/* Sort */}
       <div className="filter-group">
         <label htmlFor="sort-filter">Sort by:</label>
         <select
@@ -40,6 +41,7 @@ function TransactionFilters({
         </select>
       </div>
 
+      {/* Search */}
       <div className="filter-group">
         <label htmlFor="search-filter">Search:</label>
         <input

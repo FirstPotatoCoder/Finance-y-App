@@ -1,15 +1,18 @@
 import React from 'react';
-import './TransactionStats.css';
+import './Transaction.css';
 
 function TransactionStats({ transactions }) {
+  // Calculate total income
   const totalIncome = transactions
     .filter((t) => t.type === 'Income')
     .reduce((sum, t) => sum + parseFloat(t.amount), 0);
 
+  // Calculate total expenses
   const totalExpense = transactions
     .filter((t) => t.type === 'Expense')
     .reduce((sum, t) => sum + parseFloat(t.amount), 0);
 
+  // Calculate balance
   const balance = totalIncome - totalExpense;
 
   return (

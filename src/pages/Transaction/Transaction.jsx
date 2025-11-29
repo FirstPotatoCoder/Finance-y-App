@@ -13,24 +13,19 @@ export default function Transaction({ tempEntries }) {
     const [sortBy, setSortBy] = useState('date-desc');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Load transactions
+    // Load transactions from localStorage 
     useEffect(() => {
         let entries = [];
 
         if (isLoggedIn) {
-            // Load unified financeData
+            // Load from localStorage for logged-in users
             const saved = JSON.parse(localStorage.getItem("financeData")) || {};
-
-            // Ensure user exists & has transactions array
             const userData = saved[username] || { transactions: [], goals: [] };
-
             entries = userData.transactions;
         } else {
-            // Guest mode
             entries = tempEntries || [];
         }
 
-        // Map entries to the UI format
         const mapped = entries.map((entry) => ({
             date: entry.date,
             description: entry.note || entry.category,
@@ -42,12 +37,13 @@ export default function Transaction({ tempEntries }) {
         setTransactions(mapped);
     }, [isLoggedIn, username, tempEntries]);
 
-    // Filter + sort
+    // Apply filters and sorting
     useEffect(() => {
         let result = [...transactions];
 
         if (filterType) result = result.filter((t) => t.type === filterType);
 
+        // Search by category
         if (searchTerm) {
             const lower = searchTerm.toLowerCase();
             result = result.filter(
@@ -57,6 +53,7 @@ export default function Transaction({ tempEntries }) {
             );
         }
 
+        // Sort results
         result.sort((a, b) => {
             switch (sortBy) {
                 case 'date-desc': return new Date(b.date) - new Date(a.date);

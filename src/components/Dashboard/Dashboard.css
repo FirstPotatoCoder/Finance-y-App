@@ -1,12 +1,12 @@
-/* ===== DASHBOARD WRAPPER ===== */
+/* dashboard wrapper */
 .dashboard-wrapper {
   display: flex;
   gap: 25px;
   width: 100%;
-  align-items: stretch; /* ensures both columns stretch equally */
+  align-items: stretch; 
 }
 
-/* ===== LEFT COLUMN 75% ===== */
+/* left column */
 .left-column {
   flex: 3; /* 75% */
   display: flex;
@@ -14,14 +14,14 @@
   gap: 25px;
 }
 
-/* ===== RIGHT COLUMN 25% ===== */
+/* right column */
 .right-column {
   flex: 1; /* 25% */
   display: flex;
   flex-direction: column;
 }
 
-/* ===== SUMMARY CARDS ===== */
+/* summary cards */
 .summary-row {
   display: flex;
   gap: 20px;
@@ -35,7 +35,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== CHARTS SECTION ===== */
+/* chart sections */
 .charts-split-row {
   display: flex;
   gap: 20px;
@@ -49,16 +49,16 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== SIDE LIST / RIGHT COLUMN CONTENT ===== */
+/* goals section */
 .side-list {
   background: #fff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  flex: 1; /* fill full height of right column */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* keep content at top */
+  justify-content: flex-start;
 }
 
 .side-row {
@@ -80,7 +80,7 @@
   border-radius: 6px;
 }
 
-/* ===== COLORS ===== */
+/* colors */
 :root {
   --color-0: #4caf50;
   --color-1: #ffb74d;
@@ -90,7 +90,7 @@
   --color-5: #90a4ae;
 }
 
-/* ===== OPTIONAL: MAKE PIE & BAR CHARTS FULL HEIGHT ===== */
+/* additional styling */
 .charts-split-row .chart-box {
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@
 
 .goal-side-row {
   display: flex;
-  flex-direction: column; /* stack text above bar */
+  flex-direction: column;
   gap: 6px;
   margin-bottom: 16px;
 }
@@ -118,7 +118,7 @@
 }
 
 .goal-fill {
-  height: 100%; /* fill track height */
+  height: 100%; 
   border-radius: 6px;
 }
 
@@ -128,7 +128,7 @@
   text-align: right;
 }
 
-/* ========= RESPONSIVE DASHBOARD ========= */
+/* responsiveness */
 
 @media (max-width: 1024px) {
   .dashboard-wrapper {

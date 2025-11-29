@@ -1,7 +1,7 @@
 .transaction-page {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   min-height: 100vh;
   padding: 30px;
+  background-color: white;
 }
 
 .transaction-header {
@@ -11,18 +11,18 @@
 
 .transaction-header h1 {
   font-size: 2.5em;
-  color: #333;
+  color: black;
   margin: 0 0 10px 0;
   font-weight: 700;
 }
 
 .transaction-header p {
   font-size: 1.1em;
-  color: #666;
+  color: #558b2f;
   margin: 0;
 }
 
-/* ========= RESPONSIVE TRANSACTION PAGE ========= */
+/* Responsiveness */
 
 @media (max-width: 900px) {
   .transaction-page {

@@ -1,3 +1,5 @@
+/* make container more beautiful */
+
 .page-container {
   max-width: 400px;
   margin: 50px auto;
@@ -12,7 +14,7 @@
   color: #333;
 }
 
-/* ========= RESPONSIVE AUTH CONTAINER ========= */
+/* responsive container */
 
 @media (max-width: 600px) {
   .page-container {
