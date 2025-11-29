@@ -1,4 +1,3 @@
-// Dashboard.jsx (Goals in right column)
 import React, { useMemo } from "react";
 import { useAuth } from "../AuthContext/AuthContext";
 import {
@@ -19,12 +18,12 @@ export default function Dashboard({ userData, tempGoals = [] }) {
   const { isLoggedIn } = useAuth(); // get login status
   const goals = isLoggedIn ? (userData.goals || []) : tempGoals;
 
-  // === SUMMARY CALCULATIONS ===
+  // summary calc
   const totalEntries = transactions.length;
   const totalIncomeEntries = transactions.filter(t => t.type === "Income").length;
   const totalExpenseEntries = transactions.filter(t => t.type === "Expense").length;
 
-  // === GROUP INCOME BY CATEGORY ===
+  // group income by category
   const incomePieData = useMemo(() => {
     const map = {};
     transactions
@@ -36,7 +35,7 @@ export default function Dashboard({ userData, tempGoals = [] }) {
     return Object.entries(map).map(([category, value]) => ({ category, value }));
   }, [transactions]);
 
-  // === GROUP EXPENSE BY CATEGORY ===
+  // group expense by category
   const { expenseBarData } = useMemo(() => {
     const exp = {};
     transactions
@@ -68,14 +67,13 @@ export default function Dashboard({ userData, tempGoals = [] }) {
     "var(--color-5)",
   ];
 
-  // === HELPER FOR GOAL PROGRESS ===
+  // goal progress calculation
   const calculateProgress = (current, target) => Math.min((current / target) * 100, 100);
 
   return (
     <div className="dashboard-wrapper">
-      {/* LEFT COLUMN 75% */}
       <div className="left-column">
-        {/* ===== SUMMARY CARDS ===== */}
+        {/* summary cards: total transaction, income, and expenses */}
         <div className="summary-row">
           <div className="summary-card">
             <p>Total Entries</p>
@@ -91,9 +89,9 @@ export default function Dashboard({ userData, tempGoals = [] }) {
           </div>
         </div>
 
-        {/* ===== CHARTS SECTION ===== */}
+        {/* charts (income and expenses) */}
         <div className="charts-split-row">
-          {/* INCOME PIE CHART */}
+          {/* pie chart for income */}
           <div className="chart-box">
             <h3>Income by Category</h3>
             {incomePieData.length === 0 ? (
@@ -117,7 +115,7 @@ export default function Dashboard({ userData, tempGoals = [] }) {
             )}
           </div>
 
-          {/* EXPENSE BAR CHART */}
+          {/* expense using bar chart */}
           <div className="chart-box">
             <h3>Expenses by Category</h3>
             {expenseBarData.length === 0 ? (
@@ -140,7 +138,7 @@ export default function Dashboard({ userData, tempGoals = [] }) {
         </div>
       </div>
 
-      {/* RIGHT COLUMN 25%: GOALS */}
+      {/* goals section */}
       <div className="right-column">
         <div className="side-list">
           <h3>Goals Progress</h3>
