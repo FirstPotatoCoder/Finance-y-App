@@ -22,7 +22,8 @@ function App() {
       <nav className="sidebar">
         <Link to="/" className="nav-brand">Finance-y App</Link>
         <div className="nav-links">
-          {!isLoggedIn && <Link to="/login">Login</Link>}
+          {/* dynamic render for nav bars: exclude login option if already log in. Instead show profile.  */}
+          {!isLoggedIn && <Link to="/login">Login</Link>} 
           {isLoggedIn && <Link to="/profile">Profile</Link>}
           
           <Link to="/">Dashboard</Link>
