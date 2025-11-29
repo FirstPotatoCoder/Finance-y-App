@@ -46,7 +46,12 @@ A React-based webapp for managing your personal finances. This system allows you
 ├── package-lock.json
 ├── package.json
 ├── public
+│   ├── dashboard.png
+│   ├── entry.png
+│   ├── goal.png
+│   ├── history.png
 │   ├── index.html
+│   ├── login.png
 │   └── profile_pic.jpg
 ├── README.md
 └── src
@@ -67,7 +72,6 @@ A React-based webapp for managing your personal finances. This system allows you
     │   ├── AddEntry
     │   ├── AddGoal
     │   ├── DashboardPage
-    │   ├── Home
     │   ├── Login
     │   ├── Profile
     │   ├── Signup

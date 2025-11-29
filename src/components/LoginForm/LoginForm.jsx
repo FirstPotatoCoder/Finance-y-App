@@ -4,7 +4,7 @@
     import './LoginForm.css';
 
     export default function Login() {
-        const { login } = useAuth();
+        const { login } = useAuth(); 
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
         const [showPassword, setShowPassword] = useState(false);
@@ -26,9 +26,9 @@
             );
 
             if (match) {
-                login(username);  // 👈 save username globally
+                login(username);  // save username globally, in case we need to display "Welcome back, [username]."
                 setMessage("✅ Login successful!");
-                navigate("/"); // or "/home" if that’s your home route
+                navigate("/"); // navigate the user to "/" or our dashboard
             } else {
                 setMessage("❌ Invalid username or password");
             }
@@ -53,7 +53,7 @@
                         placeholder="Password"
                     />
 
-                    {/* Eye toggle button */}
+                    {/* toggle button */}
                     <button
                         type="button"
                         className="eye-btn"
@@ -71,7 +71,7 @@
                     </div>
                 )}
 
-                {/* New plain-text buttons */}
+                {/* plain-text sign-up button */}
                 <div className="extra-links">
                     <Link to="/signup" className="text-link">Sign Up</Link>
                 </div>
