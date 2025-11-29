@@ -28,21 +28,21 @@ export default function AddEntryForm({ tempEntries, setTempEntries }) {
         };
 
         if (isLoggedIn) {
-            // Load existing financeData
+            // load existing financeData (all users)
             const savedData = JSON.parse(localStorage.getItem("financeData")) || {};
 
-            // Ensure user structure exists
+            // select the right user (set a new one if does not exist)
             const userData = savedData[username] || { transactions: [], goals: [] };
 
-            // Add new entry to transactions
+            //push new entry to transactions
             userData.transactions.push(entry);
 
-            // Save back
+            // save back
             savedData[username] = userData;
             localStorage.setItem("financeData", JSON.stringify(savedData));
 
         } else {
-            // Guest mode → update temporary entries
+            // if guest mode update temporary entries
             setTempEntries([...tempEntries, entry]);
         }
 
