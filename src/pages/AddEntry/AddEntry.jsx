@@ -14,7 +14,7 @@ export default function AddEntry({ tempEntries = [], setTempEntries }) {
                     Add and track your expenses, income, and transfers with ease.
                 </p>
 
-                {/* --- Notification --- */}
+                {/* dynamic render based on user's login state */}
                 {isLoggedIn ? (
                     <p style={{ color: 'green', fontWeight: 'bold' }}>
                         👋 Welcome back, {username}!
@@ -26,7 +26,7 @@ export default function AddEntry({ tempEntries = [], setTempEntries }) {
                 )}
             </div>
 
-            {/* --- Add Entry Form --- */}
+            {/* our addEntryForm component with temporary props */}
             <AddEntryForm tempEntries={tempEntries} setTempEntries={setTempEntries} />
         </div>
     );
