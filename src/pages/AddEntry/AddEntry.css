@@ -1,3 +1,5 @@
+
+/* putting main container in the middle */
 .entry-container {
   max-width: 700px;
   margin: 50px auto;
@@ -7,11 +9,13 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* headder styling */
 .entry-container h2 {
   margin-top: 0;
   color: #333;
 }
 
+/* reduce margins based on screen */
 @media (max-width: 768px) {
   .entry-container {
     margin: 30px 16px;
