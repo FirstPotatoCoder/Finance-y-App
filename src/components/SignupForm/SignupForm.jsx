@@ -10,14 +10,14 @@ export default function SignUpForm() {
     const [message, setMessage] = useState("");
 
     const validateEmail = (email) => {
-        // Simple regex for basic email validation
+        // check if the email contains @ and . between texts
         return /^\S+@\S+\.\S+$/.test(email);
     }
 
     const handleSignUp = (e) => {
         e.preventDefault();
 
-        // Basic validation
+        // ensure that none is missing
         if (!email || !username || !password) {
             setMessage("❌ Please fill in Email, Username, and Password!");
             return;
@@ -29,10 +29,10 @@ export default function SignUpForm() {
         }
 
         try {
-            // Load existing credentials from localStorage
+            // load existing credentials (users) from localStorage
             const existing = JSON.parse(localStorage.getItem("user_credentials")) || [];
 
-            // Check if username already exists (case-insensitive)
+            // check if username already exists (case-insensitive) (must be unique since we use it as KEYS)
             const duplicate = existing.find(
                 user => user.username.toLowerCase() === username.toLowerCase()
             );
@@ -42,7 +42,7 @@ export default function SignUpForm() {
                 return;
             }
 
-            // Create new user object
+            // create new user object
             const newUser = { 
                 email, 
                 username, 
@@ -50,12 +50,13 @@ export default function SignUpForm() {
                 registrationDate: new Date().toISOString()
              };
 
-            // Save updated array back to localStorage
+            // save updated array back to localStorage
             existing.push(newUser);
             localStorage.setItem("user_credentials", JSON.stringify(existing));
 
             setMessage("✅ Sign Up successful!");
-            // Clear form
+            
+            // clear form
             setEmail("");
             setUsername("");
             setPassword("");

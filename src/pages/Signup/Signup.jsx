@@ -8,7 +8,7 @@ export default function SignUp() {
             <h1>Hello!</h1>
             <p className="description">Enter Your Credentials, lad.</p>
 
-            {/* Call the component multiple times with different props */}
+            {/* our lovely components */}
             <SignUpForm />
         </div>
     );

@@ -1,4 +1,4 @@
-/* --- AUTH FORM --- */
+/* form styling */
 .grid-form {
   display: grid;
   grid-template-columns: 1fr;
@@ -10,37 +10,8 @@
   flex-direction: column;
 }
 
-.form-item label {
-  font-size: 0.95em;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
-}
 
-.form-item input {
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1em;
-  background-color: #f8f8f8;
-  outline: none;
-  transition: 0.25s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.form-item input:focus {
-  border-color: #4CAF50;
-  background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-}
-
-/* --- FULL-WIDTH NOTE FIELD --- */
-.full-row {
-  grid-column: span 1;
-}
-
-/* --- SUBMIT BUTTON --- */
+/* button stylings */
 .submit-btn {
   grid-column: span 1;
   padding: 12px 18px;
@@ -63,26 +34,13 @@
   transform: translateY(0);
 }
 
-/* --- MESSAGE TEXT --- */
-.message {
-  margin-top: 10px;
-  margin-bottom: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #eef7ee;
-  border-left: 5px solid #4CAF50;
-  font-size: 0.95em;
-  color: #2f6d2f;
-  font-weight: 500;
-}
-
-/* REVEAL BUTTON */
+/* toggle reveal button */
 .password-wrapper {
   position: relative;
 }
 
 .password-wrapper input {
-  padding-right: 40px; /* space for the eye button */
+  padding-right: 40px;
 }
 
 .eye-btn {
@@ -96,33 +54,7 @@
   font-size: 18px;
 }
 
-/* TEXT BUTTON */
-.extra-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  align-items: center;
-}
-
-.text-link {
-  width: 150px;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  color: #007bff;
-  cursor: pointer;
-  font-size: 14px;
-  box-shadow: none;
-  outline: none;
-}
-
-.text-link:hover {
-  text-decoration: underline;
-}
-
-/* ========= RESPONSIVE ========= */
+/* responsiveness */
 
 @media (min-width: 769px) {
   .grid-form {
