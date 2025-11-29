@@ -1,5 +1,5 @@
 import React from 'react';
-import './TransactionFilters.css';
+import './Transaction.css';
 
 function TransactionFilters({
   filterType,

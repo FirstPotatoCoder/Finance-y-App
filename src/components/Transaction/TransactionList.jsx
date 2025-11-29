@@ -1,5 +1,5 @@
 import React from 'react';
-import './TransactionList.css';
+import './Transaction.css';
 
 function TransactionList({ transactions }) {
   if (!transactions || transactions.length === 0) {
