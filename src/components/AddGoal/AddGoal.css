@@ -1,3 +1,4 @@
+/* === MAIN CONTAINER ==== */
 .add-goal-container {
   max-width: 900px;
   margin: 50px auto;
@@ -8,6 +9,7 @@
   font-family: 'Inter', Arial, sans-serif;
 }
 
+/* display success message */
 .add-goal-container > .message {
   margin-bottom: 20px;
   padding: 12px;
@@ -19,9 +21,11 @@
   font-weight: 500;
 }
 
+/* goal display */
 .goals-section {
   margin-bottom: 40px;
 }
+
 
 .goals-section h2 {
   margin-top: 0;
@@ -30,12 +34,15 @@
   font-size: 1.5em;
 }
 
+/* listing goal list on top of eachother */
 .goals-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+
+/* empty goal list style */
 .goals-list.empty {
   min-height: 100px;
   padding: 40px 20px;
@@ -46,6 +53,8 @@
   color: #666;
 }
 
+
+/* goal card style and hover effect */
 .goal-card {
   padding: 20px;
   background: #ffffff;
@@ -59,6 +68,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
+/* header title */
 .goal-header {
   display: flex;
   justify-content: space-between;
@@ -72,6 +83,7 @@
   font-size: 1.3em;
 }
 
+/* delete btn placement */
 .delete-goal-btn {
   background: #ff4444;
   color: white;
@@ -98,10 +110,15 @@
   font-size: 0.95em;
 }
 
+
+/* ==== PROGRESS BAR SECTION ==== */
 .goal-progress {
   margin: 15px 0;
 }
 
+
+
+/* background container */
 .progress-bar-container {
   width: 100%;
   height: 24px;
@@ -111,6 +128,8 @@
   margin-bottom: 8px;
 }
 
+
+/* progress bar style */
 .progress-bar {
   height: 100%;
   background: linear-gradient(90deg, #4CAF50, #45a049);
@@ -118,6 +137,8 @@
   border-radius: 12px;
 }
 
+
+/* progress text style */
 .progress-text {
   display: flex;
   align-items: center;
@@ -132,6 +153,9 @@
   margin-left: 5px;
 }
 
+
+
+/* Goal FoOter */
 .goal-details {
   display: flex;
   gap: 20px;
@@ -141,14 +165,19 @@
   font-size: 0.9em;
 }
 
+
+
 .goal-detail-item {
   color: #666;
 }
+
 
 .goal-detail-item.overdue {
   color: #ff4444;
 }
 
+
+/* showing overdue icon */
 .overdue-badge {
   display: inline-block;
   margin-left: 8px;
@@ -160,6 +189,9 @@
   font-weight: 600;
 }
 
+
+
+/* ADDing Form Section */
 .form-section {
   margin-top: 30px;
 }
@@ -181,6 +213,8 @@
   border-left: 4px solid orange;
 }
 
+
+/* form container style */
 .goal-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -215,6 +249,8 @@
   transition: 0.25s ease;
 }
 
+
+/* Date input style  */
 .form-item input[type="date"] {
   font-size: 1em;
   padding: 12px 14px;
@@ -230,6 +266,8 @@
   grid-column: span 2;
 }
 
+
+/* Submit Button Style */
 .save-btn {
   grid-column: span 2;
   padding: 12px 18px;
@@ -252,6 +290,8 @@
   transform: translateY(0);
 }
 
+
+/* Feedback Message Style */
 .message {
   grid-column: span 2;
   margin-top: 10px;
@@ -312,6 +352,8 @@
   color: #333;
 }
 
+
+/* update progress amount */
 .update-amount-input {
   padding: 10px 12px;
   border: 1px solid #ccc;
@@ -322,12 +364,15 @@
   transition: 0.25s ease;
 }
 
+
+
 .update-amount-input:focus {
   border-color: #2196F3;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
 }
 
+/* update button or Save */
 .update-buttons {
   display: flex;
   gap: 10px;
