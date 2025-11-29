@@ -51,7 +51,7 @@
 
 /* Balance card with gradient background */
 .balance-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #4caf50;
   color: white; /* default text white */
 }
 
@@ -59,13 +59,16 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* Allow dynamic positive/negative color to override white */
+.balance-card .stat-amount {
+  color: white;
+}
+
 .balance-card .stat-amount.positive {
-  color: #4caf50 !important;
+  color: white;
 }
 
 .balance-card .stat-amount.negative {
-  color: #f44336 !important;
+  color: white;
 }
 
 /* Other cards */
