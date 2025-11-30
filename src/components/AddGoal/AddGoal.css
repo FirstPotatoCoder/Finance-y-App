@@ -2,30 +2,29 @@
 .add-goal-container {
   max-width: 900px;
   margin: 50px auto;
-  padding: 30px;
-  background: white;
+  padding: 30px; 
+  background: white; 
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Inter', Arial, sans-serif;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+  font-family: 'Inter', Arial, sans-serif; 
 }
 
 /* display success message */
 .add-goal-container > .message {
   margin-bottom: 20px;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 8px; 
   background: #eef7ee;
   border-left: 5px solid #4CAF50;
-  font-size: 0.95em;
+  font-size: 0.95em; 
   color: #2f6d2f;
-  font-weight: 500;
+  font-weight: 500;    
 }
 
 /* goal display */
 .goals-section {
   margin-bottom: 40px;
 }
-
 
 .goals-section h2 {
   margin-top: 20px;
@@ -41,40 +40,37 @@
   gap: 20px;
 }
 
-
 /* empty goal list style */
 .goals-list.empty {
   min-height: 100px;
   padding: 40px 20px;
   background: #f8f8f8;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e6e6e6;
   text-align: center;
   color: #666;
 }
 
-
 /* goal card style and hover effect */
 .goal-card {
   padding: 20px;
-  background: #ffffff;
+  background: #fffffffb;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.2s;
 }
 
 .goal-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
-
 
 /* header title */
 .goal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
 }
 
 .goal-header h3 {
@@ -110,13 +106,10 @@
   font-size: 0.95em;
 }
 
-
 /* ==== PROGRESS BAR SECTION ==== */
 .goal-progress {
   margin: 15px 0;
 }
-
-
 
 /* background container */
 .progress-bar-container {
@@ -128,7 +121,6 @@
   margin-bottom: 8px;
 }
 
-
 /* progress bar style */
 .progress-bar {
   height: 100%;
@@ -136,7 +128,6 @@
   transition: width 0.3s ease;
   border-radius: 12px;
 }
-
 
 /* progress text style */
 .progress-text {
@@ -153,8 +144,6 @@
   margin-left: 5px;
 }
 
-
-
 /* Goal FoOter */
 .goal-details {
   display: flex;
@@ -162,24 +151,20 @@
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid #e0e0e0;
-  font-size: 0.9em;
+  font-size: 0.9em; 
 }
-
-
 
 .goal-detail-item {
-  color: #666;
+  color: #666;  
 }
-
 
 .goal-detail-item.overdue {
   color: #ff4444;
 }
 
-
 /* showing overdue icon */
 .overdue-badge {
-  display: inline-block;
+  display: inline-block;   
   margin-left: 8px;
   padding: 2px 8px;
   background: #ff4444;
@@ -188,8 +173,6 @@
   font-size: 0.8em;
   font-weight: 600;
 }
-
-
 
 /* ADDing Form Section */
 .form-section {
@@ -212,7 +195,6 @@
   border-radius: 6px;
   border-left: 4px solid orange;
 }
-
 
 /* form container style */
 .goal-form {
@@ -249,7 +231,6 @@
   transition: 0.25s ease;
 }
 
-
 /* Date input style  */
 .form-item input[type="date"] {
   font-size: 1em;
@@ -265,7 +246,6 @@
 .full-row {
   grid-column: span 2;
 }
-
 
 /* Submit Button Style */
 .save-btn {
@@ -289,7 +269,6 @@
 .save-btn:active {
   transform: translateY(0);
 }
-
 
 /* Feedback Message Style */
 .message {
@@ -352,7 +331,6 @@
   color: #333;
 }
 
-
 /* update progress amount */
 .update-amount-input {
   padding: 10px 12px;
@@ -363,8 +341,6 @@
   outline: none;
   transition: 0.25s ease;
 }
-
-
 
 .update-amount-input:focus {
   border-color: #2196F3;
@@ -422,15 +398,15 @@
     padding: 20px;
   }
 
-  .goal-form {
+  .goal-form { 
     grid-template-columns: 1fr;
     padding: 20px;
   }
 
   .full-row,
-  .save-btn,
+  .save-btn, 
   .message {
-    grid-column: span 1;
+    grid-column: span 1; 
   }
 }
 

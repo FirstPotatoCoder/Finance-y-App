@@ -3,14 +3,11 @@ import { useAuth } from '../AuthContext/AuthContext';
 import './AddGoal.css';
 
 export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
+
     // get auth state and username
     const { isLoggedIn, username } = useAuth();
-    
-
     const [goalName, setGoalName] = useState("");
-
     const [goals, setGoals] = useState([]);
-
     const [targetAmount, setTargetAmount] = useState("");
     const [currentAmount, setCurrentAmount] = useState("");
     const [deadline, setDeadline] = useState("");
@@ -21,6 +18,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
 
     // Load goals goal from local strorage when user logged in 
     useEffect(() => {
+
         let loadedGoals = [];
         if (isLoggedIn) {
             // load goals from lacal storage
@@ -30,21 +28,22 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         } else {
             // use temp gaol if guest mode
             loadedGoals = tempGoals || [];
-
         }
+
         setGoals(loadedGoals);
+
     }, [isLoggedIn, username, tempGoals]);
     // validate and create new goal
+
     const handleSave = (e) => {
 
         e.preventDefault();
         // check fields input
         if (!goalName || !targetAmount || !deadline) {
-        
             setMessage("❌ Please fill in Goal Name, Target Amount, and Deadline.");
             return;
-
         }
+
         // converting input
         const target = Number(targetAmount);
         const current = currentAmount ? Number(currentAmount) : 0;
@@ -61,10 +60,8 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         }
 
         if (current > target) {
-
             setMessage("❌ Current amount cannot exceed target amount.");
             return;
-
         }
 
         // create goal obj
@@ -92,6 +89,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         } else {
             // if Guest mode update temp state
             updatedGoals = [...tempGoals, goal];
+
             if (setTempGoals) {
                 setTempGoals(updatedGoals);
             }
@@ -99,7 +97,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
 
         setGoals(updatedGoals);
         setMessage("✅ Goal created successfully!");
-        // Reset form after submit
+        // Reset form after submition
         setGoalName("");
         setTargetAmount("");
         setCurrentAmount("");
@@ -108,7 +106,6 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         // Clear message after 3 seconds
         setTimeout(() => setMessage(""), 3000);
     };
-
 
 
     // delete goal fnc 
@@ -120,8 +117,8 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
             const userData = savedData[username] || { transactions: [], goals: [] };
 
             updatedGoals = userData.goals.filter(g => g.id !== goalId);
-
             savedData[username] = { ...userData, goals: updatedGoals };
+
             localStorage.setItem("financeData", JSON.stringify(savedData));
         } else {
             updatedGoals = tempGoals.filter(goal => goal.id !== goalId);
@@ -132,11 +129,13 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
 
         setGoals(updatedGoals);
     };
+
     // start edit
     const handleStartEdit = (goal) => {
         setEditingGoalId(goal.id);
         setEditAmount(goal.currentAmount.toString());
     };
+
     // cancel edit
     const handleCancelEdit = () => {
         setEditingGoalId(null);
@@ -150,11 +149,13 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         }
 
         const newAmount = Number(editAmount);
+
         // validate input
         if (newAmount < 0) {
             setMessage("❌ Amount cannot be negative.");
             return;
         }
+
         let updatedGoals = [];
 
         if (isLoggedIn) {
@@ -201,12 +202,10 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
         return Math.min((current / target) * 100, 100).toFixed(1);
     };
 
-
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     };
-
 
     // calculate due date
     const isOverdue = (deadline) => {
@@ -395,6 +394,5 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
                 )}
             </div>
         </div>
-
     );
 }
