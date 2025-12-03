@@ -11,6 +11,7 @@ import SignUp from './pages/Signup/Signup';
 import Transaction from './pages/Transaction/Transaction';
 import Profile from './pages/Profile/Profile';
 import AddGoal from './pages/AddGoal/AddGoal';
+import InvalidPage from './pages/InvalidPage/InvalidPage';
 
 function App() {
   const [tempEntries, setTempEntries] = useState([]);
@@ -52,6 +53,7 @@ function App() {
           />
 
           {isLoggedIn && <Route path="/profile" element={<Profile />} />}
+          <Route path="*" element={<InvalidPage />} />
         </Routes>
       </main>
     </div>
