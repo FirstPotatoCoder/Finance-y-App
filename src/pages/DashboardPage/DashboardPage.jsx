@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import { useAuth } from "../../components/AuthContext/AuthContext";
+import './DashboardPage.css';
+
 
 export default function DashboardPage({ tempEntries, tempGoals }) {
   const { isLoggedIn, username } = useAuth();
@@ -33,10 +35,10 @@ export default function DashboardPage({ tempEntries, tempGoals }) {
   }, [isLoggedIn, username, tempEntries, tempGoals]);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="dashboard_container">
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <h1>Dashboard</h1>
-        {!isLoggedIn && <p style={{ color: "orange" }}>⚠️ Guest Mode: Entries are Temporary</p>}
+        {!isLoggedIn && <p className="guest-warning">⚠️ Guest Mode: Entries are Temporary</p>}
         {isLoggedIn && (
           <p style={{ color: "green", fontWeight: "bold" }}>
             👋 Welcome back, {username}!

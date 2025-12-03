@@ -233,10 +233,16 @@
   color: var(--red);
 }
 
-.balance-card {
+.balance-card.positive {
   background: var(--primary-green);
   color: var(--bg-white);
 }
+
+.balance-card.negative {
+  background: red;
+  color: var(--bg-white);
+}
+
 
 .balance-card .stat-label {
   color: rgba(255, 255, 255, 0.9);

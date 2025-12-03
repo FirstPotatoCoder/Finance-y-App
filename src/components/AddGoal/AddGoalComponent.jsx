@@ -219,7 +219,7 @@ export default function AddGoalComponent({ tempGoals = [], setTempGoals }) {
             <div className="form-section">
                 <h2>Create New Goal</h2>
                 {!isLoggedIn && (
-                    <p className="guest-warning">⚠️ Login to Make Goals Persistent</p>
+                    <p className="guest-warning-goal">⚠️ Login to Make Goals Persistent</p>
                 )}
                 <form className="goal-form" onSubmit={handleSave}>
                     <div className="form-item">
