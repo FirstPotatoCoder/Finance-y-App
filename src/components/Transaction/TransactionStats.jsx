@@ -17,10 +17,10 @@ function TransactionStats({ transactions }) {
 
   return (
     <div className="transaction-stats">
-      <div className="stat-card balance-card">
+      <div className={`stat-card balance-card ${balance >= 0 ? 'positive' : 'negative'}`}>
         <div className="stat-label">Total Balance</div>
-        <div className={`stat-amount ${balance >= 0 ? 'positive' : 'negative'}`}>
-          ${Math.abs(balance).toFixed(2)}
+        <div className={`stat-amount`}>
+          ${balance.toFixed(2)}
         </div>
       </div>
 

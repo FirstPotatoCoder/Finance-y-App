@@ -20,7 +20,7 @@ export default function AddEntry({ tempEntries = [], setTempEntries }) {
                         👋 Welcome back, {username}!
                     </p>
                 ) : (
-                    <p style={{ color: 'orange', fontWeight: 'bold' }}>
+                    <p className='guest-warning'>
                         ⚠️ Login to Make Data Persistent
                     </p>
                 )}

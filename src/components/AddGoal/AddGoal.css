@@ -186,14 +186,17 @@
   font-size: 1.5em;
 }
 
-.guest-warning {
-  color: orange;
-  font-weight: bold;
-  margin-bottom: 15px;
-  padding: 10px;
+.guest-warning-goal {
+  display: inline-block;
+  margin: 0 auto 15px;  /* centers it */
+  padding: 10px 20px;
   background: #fff3cd;
   border-radius: 6px;
   border-left: 4px solid orange;
+  color: red;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* form container style */
@@ -241,6 +244,10 @@
   border-color: #4CAF50;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.form-section {
+  text-align: center;
 }
 
 .full-row {
